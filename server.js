@@ -24,7 +24,12 @@ mongoose.connect('mongodb://localhost:27017/vypar', {
 app.use(bodyParser.json());
 
 app.use('/api/user', userRoutes);
-
+app.get('/joke', (req, res) => {
+    const dc = {
+        name: 'dhruvesh'
+    }
+    res.json(dc);
+})
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
