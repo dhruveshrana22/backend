@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const userRoutes = require('./src/routes/userRoutes'); // Import user routes
+const productRoutes = require('./src/routes/products'); // Import user routes
 
 const app = express();
 const PORT = 5000;
@@ -11,7 +11,7 @@ const PORT = 5000;
 app.use(cors());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/vypar', {
+mongoose.connect('mongodb://localhost:27017/KalpeshVypar', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
@@ -21,15 +21,10 @@ mongoose.connect('mongodb://localhost:27017/vypar', {
 });
 
 // Body parser middleware
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
+app.use('/api/products', productRoutes);
 
-app.use('/api/user', userRoutes);
-app.get('/joke', (req, res) => {
-    const dc = {
-        name: 'dhruvesh'
-    }
-    res.json(dc);
-})
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
