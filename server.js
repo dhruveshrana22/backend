@@ -2,7 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const productRoutes = require('./src/routes/products'); // Import user routes
+const productRoutes = require('./src/routes/productRoute'); // Import user routes
+const customerRoutes = require('./src/routes/customerRoutes');
+
 
 const app = express();
 const PORT = 5000;
@@ -24,6 +26,8 @@ mongoose.connect('mongodb://localhost:27017/KalpeshVypar', {
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 app.use('/api/products', productRoutes);
+app.use('/api/customers', customerRoutes);
+
 
 // Start the server
 app.listen(PORT, () => {
