@@ -13,7 +13,7 @@ const PORT = 5000;
 app.use(cors());
 
 // Connect to MongoDB
-mongoose.connect('mongodb://kalpesh/KalpeshVypar', {
+mongoose.connect('mongodb://0.0.0.0:27017/KalpeshVypar', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
