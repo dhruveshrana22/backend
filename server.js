@@ -21,6 +21,18 @@ mongoose.connect('mongodb://Kalpesh/KalpeshVypar', {
 }).catch(err => {
     console.error('Error connecting to MongoDB:', err.message);
 });
+app.get('/', (req, res) => {
+    res.send('Welcome to the server!');
+});
+
+// Define a route to handle form submissions or API requests
+app.get('/submit', (req, res) => {
+    // Simulate some data processing
+    const data = { example: 'This is some example data' };
+    console.log('Data received:', data);
+    res.json({ message: 'Data received successfully!', data });
+});
+
 
 // Body parser middleware
 app.use(bodyParser.json({ limit: '10mb' }));
